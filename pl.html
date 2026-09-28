@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html lang="vi"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <!-- Giúp trang hiển thị tốt trên điện thoại --> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>
+            Happy Birthday
+        </title> 
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+         <!-- Font Quicksand --> 
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"> 
+        <!-- File CSS --> 
+        <link rel="stylesheet" href="style.css"> 
+    </head> 
+    <body> 
+        <!-- Khung chính của trang --> 
+        <div class="container"> 
+        <!-- JS sẽ tự động tạo các câu chúc và đưa chúng vào bên trong vùng này. --> 
+        <div id="wish-text">
+            </div> 
+            <!-- Nút bắt đầu hiệu ứng --> 
+            <button id="action-btn">
+                <svg viewBox="0 0 320 300">
+                    <path d="M160 285
+                             C145 270 25 170 25 95
+                             C25 50 60 25 100 25
+                             C130 25 150 40 160 65
+                             C170 40 190 25 220 25
+                             C260 25 295 50 295 95
+                             C295 170 175 270 160 285Z">
+                    </path>
+                </svg>
+            
+                <span>Nhấn vào đây</span>
+            </button> 
+            </div> 
+            <audio id="birthday-music" src="music/Celebration [Piano] (Weathering With You)_spotdown.org.mp3"></audio>
+            <!-- File JavaScript --> 
+            <script src="script.js"></script> 
+    </body> 
+</html>

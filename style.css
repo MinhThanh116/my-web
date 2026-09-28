@@ -1,0 +1,294 @@
+/* 1. Đặt lại mặc định trang web */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff; /* Nền trắng tinh tế */
+    font-family: 'Quicksand', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #2c3e50;
+}
+
+/* 2. Khung căn giữa màn hình */
+.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 650px;
+    width: 90%;
+}
+
+/* 3. Vùng hiển thị chữ */
+#wish-text {
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 4. Kiểu dáng từng câu chữ */
+.wish-line {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+/* Class hiệu ứng khi chữ xuất hiện */
+.wish-line.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Kiểu chữ đặc biệt (cho câu chốt Happy Birthday) */
+.wish-line.highlight {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #e74c3c; /* Màu đỏ hồng ngọt ngào */
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+/* 5. Nút bấm tương tác */
+#action-btn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    width: 340px;
+    height: 320px;
+
+    transform: translate(-50%, -50%);
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.5s ease;
+}
+
+/* Hình trái tim */
+#action-btn svg {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    filter: drop-shadow(
+        0 10px 20px rgba(255, 107, 129, 0.3)
+    );
+
+    transition: transform 0.3s ease;
+}
+
+/* Màu trái tim */
+#action-btn svg path {
+    fill: #ff6b81;
+}
+
+/* Chữ bên trong trái tim */
+#action-btn span {
+    position: relative;
+
+    z-index: 2;
+
+    color: white;
+
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transform: translateY(8px);
+}
+
+/* Khi rê chuột */
+#action-btn:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+}
+
+/* Khi bấm */
+#action-btn:active {
+    transform: translate(-50%, -50%) scale(0.96);
+}
+
+/* Khi bắt đầu lời chúc */
+#action-btn.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ==========================================
+   HIỆU ỨNG BÓNG BAY
+   ========================================== */
+
+   .balloon {
+    position: fixed;
+
+    /* Bắt đầu từ phía dưới màn hình */
+    bottom: -120px;
+
+    /* Hình dạng bóng bay */
+    border-radius: 50% 50% 45% 45%;
+
+    /* Màu bóng */
+    background: #e74c3c;
+
+    /* Tạo hiệu ứng bóng sáng */
+    box-shadow:
+        inset -8px -10px 15px rgba(0, 0, 0, 0.15),
+        inset 8px 8px 12px rgba(255, 255, 255, 0.35);
+
+    /* Bóng bay lên */
+    animation-name: balloon-fly;
+
+    /* Chạy một lần */
+    animation-timing-function: linear;
+
+    /* Giữ trạng thái cuối */
+    animation-fill-mode: forwards;
+
+    /* Đảm bảo nằm trên nền */
+    z-index: 10;
+}
+
+/* Dây của bóng bay */
+.balloon::after {
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 75px;
+
+    left: 50%;
+    top: 100%;
+
+    /* Tạo dây cong */
+    border-left: 1px solid #555;
+    border-radius: 50%;
+
+    transform: translateX(-50%);
+}
+
+/* Hiệu ứng bóng bay bay lên */
+@keyframes balloon-fly {
+
+    0% {
+        transform: translateY(0) rotate(-5deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    25% {
+        transform: translateY(-30vh) rotate(5deg);
+    }
+
+    50% {
+        transform: translateY(-60vh) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateY(-90vh) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(-120vh) rotate(-5deg);
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   PHẦN CUỐI SAU KHI BÓNG BAY BAY HẾT
+   ========================================== */
+
+   .birthday-ending {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -45%);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transition: opacity 1.5s ease;
+}
+
+
+/* Khi xuất hiện */
+.birthday-ending.show {
+    opacity: 1;
+}
+
+
+/* ==========================================
+   GIF
+   ========================================== */
+
+.birthday-gif {
+    width: 280px;
+    height: auto;
+
+    margin-bottom: 10px;
+}
+
+
+/* ==========================================
+   BÁNH KEM
+   ========================================== */
+
+.birthday-cake {
+    width: 150px;
+    height: auto;
+
+    margin-bottom: 10px;
+}
+
+
+/* ==========================================
+   CHỮ HAPPY BIRTHDAY
+   ========================================== */
+
+   .birthday-title {
+    font-family: 'Caveat', cursive; /* Font chữ Caveat */
+    font-size: 3.5rem; /* Kích thước chữ */
+    font-weight: 600; /* Độ đậm */
+    color: #e74c3c; /* Màu chữ */
+    white-space: nowrap; /* Không cho xuống dòng */
+    margin-top: 5px; /* Khoảng cách phía trên */
+}
